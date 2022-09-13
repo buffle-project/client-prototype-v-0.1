@@ -2,33 +2,110 @@
 import React, { useState, useEffect } from 'react';
 
 // antd imports
-import { Form, Button, Input, Image, Space } from 'antd';
-import { Typography } from 'antd';
+import { Form, Button, Input, Image, Space, notification, Typography } from 'antd';
 
 // Redux imports
 import { useSelector, useDispatch } from 'react-redux';
-import { setUser, deleteUser } from '../../context/slices/userSlice';
+import { setUser, deleteUser, setUserBetter } from '../../context/slices/userSlice';
 
 // utils imports
 import { textHeadline, textParagraph, textLegal } from './staticText';
+import LogoPurple from '../../img/png/logoPurple.png';
+import Google from '../../img/png/googleicon.png';
+import API from '../../utils/api';
 import styles from './styles';
-import './login.css'
-import LogoPurple from '../../img/png/logoPurple.png'
-import Google from '../../img/png/googleicon.png'
-
+import './login.css';
 
 
 
 function Login() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [isEmail, setIsEmail] = useState(false)
+    const [isValidEmail, setIsValidEmail] = useState(true);
+    const [validationStatus, setValidationStatus] = useState('');
     const dispatch = useDispatch()
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        dispatch(setUser());
+
+    // Notifications
+    const openNotificationSuccess = (name) => {
+        notification.open({
+            message: 'Authentication Successful!',
+            description: `Welcome back to Buffle ${name}!`
+        });
+    };
+
+    const openNotificationFailure = () => {
+        notification.open({
+            message: 'Authentication Failure',
+            description: `Sorry, we couldn't log you in. Try again with a different combination!`
+        });
+    };
+
+
+    // API calls
+    async function registerUser() {
+        await API.post('/register', {
+            email: email,
+            name: name,
+        })
+        .then((res) => {
+            setName(res.data.name);
+            setEmail(res.data.email);
+            dispatch(setUser(res.data))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
+
+    async function loginUser() {
+        await API.post('/login', {
+            email: email
+        })
+        .then((res) => {
+            setName(res.data.name);
+            setEmail(res.data.email);
+            dispatch(setUser(res.data))
+            // dispatch(setUserBetter());
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+    const handleLogin = () => {
+        console.log("Starting the login")
+        loginUser();
+    }
+
+
+    // Functions and Handlers
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
+    const handleEmailChange = (email) => {
+        if (validateEmail(email)) {
+            setEmail(email);
+            setIsValidEmail(true);
+        } else {
+            setIsValidEmail(false);
+        }
+    }
+
+    useEffect(() => {
+        if (isValidEmail === true) {
+            setValidationStatus('');
+        } else (
+            setValidationStatus('error')
+        )
+    }, [isValidEmail])
+
+
 
     return (
         <>
@@ -50,6 +127,9 @@ function Login() {
                         <Form
                             layout='vertical'
                             style={styles.form}
+                            onFinish={handleLogin}
+                            onFinishFailed={``}
+
                         >
                             {/* Title section */}
                             <Form.Item style={styles.formItem}>
@@ -80,7 +160,7 @@ function Login() {
                             </Form.Item>
 
                             {/* Email section */}
-                            <Form.Item style={styles.formItem}>
+                            <Form.Item style={styles.formItem} rules={[{ required: true, message: 'Please input your e-mail!', }]}>
                                 <div style={styles.formInputGroupWrapper}>
                                     <Input
                                         placeholder={`Enter an e-mail`}
@@ -90,9 +170,9 @@ function Login() {
                                         onChange={(e) => setEmail(e.target.value)}
                                         bordered={false}
                                         size='large'
-
+                                        status={validationStatus}
                                     />
-                                    <span style={{margin: 20}}>or</span>
+                                    <span style={{ margin: 20 }}>or</span>
                                     <button
                                         style={styles.formButtonGoogle}
                                         onClick={``}
@@ -101,7 +181,7 @@ function Login() {
                                             preview={false}
                                             src={Google}
                                             width={20}
-                                        />                           
+                                        />
                                     </button>
                                 </div>
                             </Form.Item>
@@ -112,7 +192,7 @@ function Login() {
                                     <Button
                                         style={styles.formButtonStart}
                                         size='large'
-                                        onClick={handleLogin}
+                                        htmlType="submit"
                                     >
                                         Start
                                     </Button>
