@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+// style imports
 import './App.css';
+import 'antd/dist/antd.min.css';
+
+// Redux imports
+import { useSelector, useDispatch } from 'react-redux';
+import {setUser, deleteUser} from './context/slices/userSlice';
+
+// pages imports
+import Login from './pages/Login/Login';
+import Test from './pages/Test/Test';
+
+// utils
+import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const user = useSelector((state) => state.userSlice.user)
+    const dispatch = useDispatch()
+
+    return (
+        <>
+            <Router>
+                <Routes>
+                    <Route index path={`/`} element={user? <Test /> : <Login /> } /> 
+                    <Route path={`/login`} element={user? <Test /> : <Login />} />
+                </Routes>
+            </Router>
+        </>
+    );
 }
 
 export default App;
