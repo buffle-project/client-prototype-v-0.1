@@ -10,6 +10,7 @@ import { setUser, deleteUser, setUserBetter } from '../../context/slices/userSli
 
 // utils imports
 import { textHeadline, textParagraph, textLegal } from './staticText';
+import { useNavigate } from 'react-router-dom';
 import LogoPurple from '../../img/png/logoPurple.png';
 import Google from '../../img/png/googleicon.png';
 import API from '../../utils/api';
@@ -23,11 +24,12 @@ function Login() {
     const [email, setEmail] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [validationStatus, setValidationStatus] = useState('');
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
     // Notifications
-    const openNotificationSuccess = (name) => {
+    const openNotificationSuccess = () => {
         notification.open({
             message: 'Authentication Successful!',
             description: `Welcome back to Buffle ${name}!`
@@ -52,9 +54,12 @@ function Login() {
             setName(res.data.name);
             setEmail(res.data.email);
             dispatch(setUser(res.data))
+            openNotificationSuccess(res.data.name);
         })
         .catch((error) => {
+            console.log("There's been an error:")
             console.log(error)
+            openNotificationFailure();
         })
     }
 
@@ -66,17 +71,18 @@ function Login() {
             setName(res.data.name);
             setEmail(res.data.email);
             dispatch(setUser(res.data))
-            // dispatch(setUserBetter());
+            openNotificationSuccess();
+            navigate('/')
+            localStorage.setItem("user", JSON.stringify(res.data.name));
         })
         .catch((error) => {
+            console.log("There's been an error:")
             console.log(error)
+            openNotificationFailure();
         })
     }
 
-    const handleLogin = () => {
-        console.log("Starting the login")
-        loginUser();
-    }
+    
 
 
     // Functions and Handlers
@@ -95,6 +101,15 @@ function Login() {
         } else {
             setIsValidEmail(false);
         }
+    }
+
+    const handleLogin = () => {
+        console.log("Starting the login")
+        loginUser();
+    }
+
+    const handleRegister = () => {
+        registerUser();
     }
 
     useEffect(() => {
@@ -128,7 +143,7 @@ function Login() {
                             layout='vertical'
                             style={styles.form}
                             onFinish={handleLogin}
-                            onFinishFailed={``}
+                            onFinishFailed={openNotificationFailure}
 
                         >
                             {/* Title section */}

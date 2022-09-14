@@ -107,6 +107,10 @@ const styles = {
         borderRadius: '8px',
         width: '200px'
     },
+    notification: {
+        borderRadius: '8px',
+        boxShadow: '5px 5px 22px rgba(0, 0, 0, 0.05)', 
+    }
 };
 
 export default styles;
