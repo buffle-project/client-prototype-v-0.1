@@ -37,11 +37,14 @@ const styles = {
         color: '#1B2559',
         cursor: 'pointer',
     },
-    // Links & Table section - it will be a separate component
     content: {
-
+        padding: '10px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-
 }
 
 export default styles;

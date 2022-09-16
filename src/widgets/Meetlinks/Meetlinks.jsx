@@ -5,10 +5,11 @@ import React, {useState, useEffect} from 'react';
 import { Image, Button } from 'antd';
 
 // utils imports
+import Meetlink from './components/Meetlink';
 
 // styling and image imports
 import styles from './styles';
-import meetlinksLogo from './img/meetlinksLogo.png'
+import meetlinksLogo from './img/meetlinksLogo.png';
 import { PlusOutlined, MoreOutlined } from '@ant-design/icons';
 
 
@@ -19,6 +20,10 @@ function Meetlinks() {
 	// Handlers
 	const handleAddButtonClick = () => {
 		console.log('add button clicked!')
+	}
+
+	const handleImageClick = () => {
+		console.log('Image clicked!')
 	}
 
 	return (
@@ -32,6 +37,7 @@ function Meetlinks() {
 							preview={false}
 							src={meetlinksLogo}
 							width={40}
+							onClick={handleImageClick}
 						/>
 						<span style={styles.headerTitle}>Meetlinks</span>
 					</div>
@@ -49,8 +55,8 @@ function Meetlinks() {
 
 
 				{/* Content & Links */}
-				<div>
-					Hello from cotent!
+				<div style={styles.content}>
+					<Meetlink />
 				</div>
 			</div>
 		</>
