@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // pages imports
 import Login from './pages/Login/Login';
 import Test from './pages/Test/Test';
+import AccountCreation from './pages/AccountCreation/AccountCreation';
 
 // utils
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -21,8 +22,9 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route index path={`/`} element={user.email? <Test /> : <Login /> } /> 
-                    <Route path={`/login`} element={user.email? <Test /> : <Login />} />
+                    <Route path={`/`} element={<AccountCreation/>} />
+                    {/* <Route index path={`/`} element={user? <Test /> : <AccountCreation /> } /> 
+                    <Route path={`/dashboard`} element={!user? <AccountCreation /> : <Test />} /> */}
                 </Routes>
             </Router>
         </>

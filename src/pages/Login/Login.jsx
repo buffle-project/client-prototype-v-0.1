@@ -15,7 +15,6 @@ import LogoPurple from '../../img/png/logoPurple.png';
 import Google from '../../img/png/googleicon.png';
 import API from '../../utils/api';
 import styles from './styles';
-import './login.css';
 
 
 
@@ -108,10 +107,6 @@ function Login() {
         loginUser();
     }
 
-    const handleRegister = () => {
-        registerUser();
-    }
-
     useEffect(() => {
         if (isValidEmail === true) {
             setValidationStatus('');
@@ -124,7 +119,7 @@ function Login() {
 
     return (
         <>
-            <div className='login-container'>
+            <div className='gradient-background'>
                 <div className='wrapper'>
 
                     {/* Text block */}
@@ -144,7 +139,6 @@ function Login() {
                             style={styles.form}
                             onFinish={handleLogin}
                             onFinishFailed={openNotificationFailure}
-
                         >
                             {/* Title section */}
                             <Form.Item style={styles.formItem}>
@@ -188,16 +182,6 @@ function Login() {
                                         status={validationStatus}
                                     />
                                     <span style={{ margin: 20 }}>or</span>
-                                    <button
-                                        style={styles.formButtonGoogle}
-                                        onClick={``}
-                                    >
-                                        <Image
-                                            preview={false}
-                                            src={Google}
-                                            width={20}
-                                        />
-                                    </button>
                                 </div>
                             </Form.Item>
 
@@ -226,4 +210,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;
