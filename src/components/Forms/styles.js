@@ -1,25 +1,8 @@
-import { colors, textColors } from '../../utils/colors';
+import { colors } from '../../utils/colors';
 
 const styles = {
-    textWrapper: {
-        maxWidth: "30%"
-    },
-    textHeadline: {
-        color: colors.purple,
-        fontSize: '60px',
-        fontWeight: '700',
-        marginBottom: '20px',
-        lineHeight: '60px'
-    },
-    textParagraph: {
-        maxWidth: "75%",
-        color: colors.purple,
-        fontSize: '18px',
-        fontWeight: '500',
-        letterSpacing: '1px',
-    },
     textLegal: {
-        color: textColors.purple,
+        color: colors.lightGrey,
         fontSize: '11px',
         fontWeight: '400',
     },
@@ -79,7 +62,6 @@ const styles = {
         border: 'none',
         borderRadius: '8px',
         width: '200px',
-        //box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         boxShadow: 'rgba(0, 0, 0, 0.5) 0px 3px 8px',
     },
     notification: {
@@ -112,6 +94,13 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+    },
+
+    // JoinTeamForm styles
+    orText: {
+        color: colors.purple,
+        fontSize: '20px',
+        fontWeight: '600',
     }
     
 };
