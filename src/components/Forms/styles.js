@@ -95,14 +95,40 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center',
     },
-
     // JoinTeamForm styles
+    teamCodeText: {
+        color: colors.purple,
+        fontWeight: '600',
+        fontSize: '14px',
+        marginBottom: '7px',
+        marginTop: '7px',
+    },
     orText: {
         color: colors.purple,
         fontSize: '20px',
         fontWeight: '600',
-    }
-    
+    },
+    teamCodeInputSection: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    teamCodeInput: {
+        borderRadius: '8px',
+        boxShadow: '5px 5px 22px rgba(0, 0, 0, 0.05)',
+        border: 'none',
+        width: '70%'
+    },
+    teamCodeButton: {
+        color: 'white',
+        background: 'radial-gradient(100% 682.41% at 4.04% 0%, #8286FF 0%, #4922FF 100%)',
+        border: 'none',
+        borderRadius: '8px',
+        width: '30%',
+        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 3px 8px',
+        marginLeft: '5px'
+    },
 };
 
 export default styles;
