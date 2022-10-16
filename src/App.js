@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Login from './pages/Login/Login';
 import Test from './pages/Test/Test';
 import AccountCreation from './pages/AccountCreation/AccountCreation';
+import JoinTeam from './pages/JoinTeam/JoinTeam';
 
 // utils
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -22,7 +23,9 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route path={`/`} element={<AccountCreation/>} />
+                    <Route index path={`/register`} element={<AccountCreation/>} />
+                    <Route path={`/join-team`} element={<JoinTeam/>} />
+                    {/* <Route path={`/`} element={<Test/>} /> */}
                     {/* <Route index path={`/`} element={user? <Test /> : <AccountCreation /> } /> 
                     <Route path={`/dashboard`} element={!user? <AccountCreation /> : <Test />} /> */}
                 </Routes>
