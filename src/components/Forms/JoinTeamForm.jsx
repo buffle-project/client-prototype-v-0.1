@@ -1,8 +1,11 @@
 // React core imports
-import React from "react";
+import React, {useState} from "react";
 
 // antd imports
 import { Form, Image, Typography, Button, Input, notification } from "antd";
+
+// redux imports
+import { useSelector, useDispatch } from 'react-redux';
 
 // utils imports
 import styles from "./styles";
@@ -15,6 +18,9 @@ import API from "../../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 
 function JoinTeamForm() {
+  const [invitationCode, setInvitationCode] = useState('');
+  const user = useSelector((state) => state.userSlice.user);
+  
 
 	// Notifications
 	const openNotificationSuccess = (teamName) => {
@@ -30,7 +36,7 @@ function JoinTeamForm() {
 	
 	  const openNotificationFailure = () => {
 		notification.open({
-		  message: "Authentication Failure",
+		  message: "Failed to Join",
 		  description: `Sorry, there's been an error`,
 		  style: {
 			borderRadius: "8px",
@@ -42,9 +48,14 @@ function JoinTeamForm() {
 	// API calls
 	async function joinTeam() {
 		await API.post('/account/join-team', {
-			
+			// email: email
 		})
-	}
+	};
+
+  // handlers
+  const handleJoinTeam = () => {
+    console.log(user.email);
+  };
 
   return (
     <>
@@ -76,7 +87,12 @@ function JoinTeamForm() {
                 style={styles.teamCodeInput}
                 placeholder="6 character code"
               />
-              <Button style={styles.teamCodeButton}>Join</Button>
+              <Button 
+                style={styles.teamCodeButton}
+                onClick={handleJoinTeam}
+              >
+                Join
+              </Button>
             </div>
           </Form.Item>
 
@@ -92,13 +108,14 @@ function JoinTeamForm() {
                 <Button
                   style={styles.formButtonStart}
                   size="large"
-                  onClick={() => console.log("Create team button clicked")}
                 >
                   Create a Team
                 </Button>
               </Link>
             </div>
           </Form.Item>
+
+          
         </Form>
 
         <Typography style={styles.textLegal}>{legalText}</Typography>

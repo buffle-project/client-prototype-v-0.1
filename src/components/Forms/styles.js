@@ -95,6 +95,12 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center',
     },
+    loginText: {
+        color: colors.lightGrey,
+        fontSize: '11px',
+        fontWeight: '400',
+    },
+
     // JoinTeamForm styles
     teamCodeText: {
         color: colors.purple,

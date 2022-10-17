@@ -18,7 +18,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setUser,
   deleteUser,
-  setUserBetter,
 } from "../../context/slices/userSlice";
 
 // utils imports
@@ -31,7 +30,7 @@ import {
   LoadingOutlined,
 } from "@ant-design/icons";
 import API from "../../utils/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const loadingIcon = (
   <LoadingOutlined
@@ -51,6 +50,8 @@ function RegistrationForm() {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.userSlice.user);
+
 
   // Notifications
   const openNotificationSuccess = (name) => {
@@ -68,7 +69,7 @@ function RegistrationForm() {
     notification.open({
       message: "Authentication Failure",
       description: `Sorry, there's been an error`,
-	  style: {
+      style: {
         borderRadius: "8px",
         boxShadow: "5px 5px 22px rgba(0, 0, 0, 0.05)",
       },
@@ -77,7 +78,7 @@ function RegistrationForm() {
 
   // API calls
   async function registerUser() {
-	setIsLoading(true);
+    setIsLoading(true);
     await API.post("/register", {
       email: email,
       password: password,
@@ -85,12 +86,18 @@ function RegistrationForm() {
       lastName: lastName,
     })
       .then((res) => {
-		setIsLoading(false);
-        dispatch(setUser(res.data.email));
+        setIsLoading(false);
+        console.log(res.data.username, res.data.email)
+        let payload = {
+          username: res.data.username,
+          email: res.data.email
+        }
+        dispatch(setUser());
         openNotificationSuccess(res.data.username);
+        console.log(user);
       })
       .catch((error) => {
-		setIsLoading(false);
+        setIsLoading(false);
         console.log("There's been an error:");
         console.log(error);
         openNotificationFailure();
@@ -179,6 +186,16 @@ function RegistrationForm() {
                 </Button>
               )}
             </div>
+          </Form.Item>
+
+          {/* Login Link */}
+          <Form.Item style={styles.formItem}>
+            <Typography style={styles.loginText}>
+              Already have an account?
+            </Typography>
+            <Link to={`/login`}>
+              <Typography style={styles.loginText}>Click here to Log in</Typography>
+            </Link>
           </Form.Item>
         </Form>
 
