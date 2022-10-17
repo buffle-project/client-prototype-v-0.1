@@ -7,6 +7,8 @@ import Login from './pages/Login/Login';
 import Test from './pages/Test/Test';
 import AccountCreation from './pages/AccountCreation/AccountCreation';
 import JoinTeam from './pages/JoinTeam/JoinTeam';
+import Dashboard from './pages/Dashboard/Dashboard';
+import ChoosePlan from './pages/ChoosePlan/ChoosePlan';
 
 // utils
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -14,7 +16,6 @@ import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 // Context imports
 import { useContext } from "react";
 import { Context } from "./context/Context";
-import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
     const { user } = useContext(Context);
@@ -27,6 +28,7 @@ function App() {
                     <Route exact path={`/login`} element={user? <Dashboard /> : <Login />} />
                     <Route index path={`/register`} element={<AccountCreation/>} />
                     <Route path={`/join-team`} element={<JoinTeam/>} />
+                    <Route path={'/choose-plan'} element={<ChoosePlan />} />
                     
                     {/* Login */}
                     {/* Join team */}

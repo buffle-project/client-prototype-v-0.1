@@ -108,7 +108,7 @@ function JoinTeamForm() {
           {/* Create team button */}
           <Form.Item style={styles.formItem}>
             <div style={styles.formButtonStartWrapper}>
-              <Link to={`/create-team`}>
+              <Link to={`/choose-plan`}>
                 <Button
                   style={styles.formButtonStart}
                   size="large"

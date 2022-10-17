@@ -135,6 +135,58 @@ const styles = {
         boxShadow: 'rgba(0, 0, 0, 0.3) 0px 3px 8px',
         marginLeft: '5px'
     },
+
+    // choose plan styles ----------
+    planWrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between'
+    },
+    planBox: {
+        padding: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderRadius: '10px',
+        boxShadow: '5px 5px 22px rgba(0, 0, 0, 0.2)',
+        border: 'none',
+        width: '45%',
+        height: '250px'
+    },
+    chooseButton: {
+        color: 'white',
+        background: 'radial-gradient(100% 682.41% at 4.04% 0%, #8286FF 0%, #4922FF 100%)',
+        border: 'none',         
+        borderRadius: '8px',
+        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 3px 8px',
+        margin: '10px'
+    },
+    chooseButtonDisabled: {
+        color: 'white',
+        background: 'radial-gradient(100% 682.41% at 4.04% 0%, #808080 0%, #696969 100%)',
+        border: 'none',         
+        borderRadius: '8px',
+        boxShadow: 'rgba(0, 0, 0, 0.3) 0px 3px 8px',
+        margin: '10px'
+    },
+    planTitleText: {
+        color: colors.purple,
+        fontSize: '24px',
+        fontWeight: '600',
+    },
+    planDescriptionText: {
+        color: colors.lightGrey,
+        fontSize: '15px',
+        fontWeight: '400',
+        padding: '3px'
+    },
+    planBulletPoints: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+    }
 };
 
 export default styles;
