@@ -81,6 +81,7 @@ function RegistrationForm() {
       });
       openNotificationSuccess(response.data.username);
       dispatch({ type: "REGISTRATION_FAILURE", payload: response.data });
+      navigate('/join-team');
     } catch (error) {
       dispatch({ type: "REGISTRATION_FAILURE" });
       openNotificationFailure();
@@ -158,7 +159,7 @@ function RegistrationForm() {
           {/* Next button */}
           <Form.Item style={styles.formItem}>
             <div style={styles.formButtonStartWrapper}>
-              {isFetching ? (
+              {/* {isFetching ? (
                 <Spin indicator={loadingIcon} />
               ) : (
                 <Button
@@ -168,7 +169,19 @@ function RegistrationForm() {
                 >
                   Next
                 </Button>
-              )}
+              )} */}
+              <Button
+                  style={styles.formButtonStart}
+                  size="large"
+                  htmlType="submit"
+                  disabled={isFetching}
+              >
+                {isFetching? (
+                  <Spin indicator={loadingIcon} />
+                ) : (
+                  'Next'
+                )}
+              </Button>
             </div>
           </Form.Item>
 
