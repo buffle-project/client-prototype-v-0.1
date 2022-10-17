@@ -165,7 +165,7 @@ const styles = {
     },
     chooseButtonDisabled: {
         color: 'white',
-        background: 'radial-gradient(100% 682.41% at 4.04% 0%, #808080 0%, #696969 100%)',
+        background: 'radial-gradient(100% 682.41% at 4.04% 0%, #A9A9A9 0%, #696969 100%)',
         border: 'none',         
         borderRadius: '8px',
         boxShadow: 'rgba(0, 0, 0, 0.3) 0px 3px 8px',

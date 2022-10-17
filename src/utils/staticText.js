@@ -25,19 +25,27 @@ export const JoinTeamText = {
 };
 
 export const ChoosePlanText = {
-    title: `Lets choose a plan`,
+    title: `Lets choose a plan!`,
     paragraph: `Free plan gets you and your
     friends going and covered.
     In case you want to get more,
     Buffle premium is the way to go. You can always change your
-    plan in the team settings`,
+    plan in the Team settings`,
     freePlanDescription: `Free plan lets you have 4 people onboard the Buffle platform.
     Access to the apps in marketplace is unlimited. Recommended for friends, family and
     personal use.`,
     premiumPlanDescription: `Premium plan allows you to onboard as many people to your team
     as you want. There are no limitations. With Premium plan, you can also get your own domain and
     customizable invitation code. Recommended for teams and businesses.`,
-}
+};
+
+export const CreateTeamText = {
+    title: `What will be the name of your team?`,
+    paragraph: `Choose a unique name
+    for your team. Invite whoever you wish,
+    even if they're not on Buffle. You can always manage your
+    Team in Team settings`,
+};
 
 export const legalText = `By submitting 
 this form I confirm that I have 
