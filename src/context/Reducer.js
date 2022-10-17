@@ -35,6 +35,16 @@ const Reducer = (state, action) => {
         user: null,
         isFetching: false,
       };
+    case "fetching_start":
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case "fetching_end":
+      return {
+        ...state,
+        isFetching: false,
+      }
     default:
       return state;
   }

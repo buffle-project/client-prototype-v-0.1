@@ -38,19 +38,18 @@ const loadingIcon = (
   />
 );
 
-function RegistrationForm() {
-  const [username, setUsername] = useState("");
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [lastName, setLastName] = useState("");
-  const { dispatch, isFetching } = useContext(Context);
+  const { isFetching, dispatch } = useContext(Context);
   const navigate = useNavigate();
+
 
   // Notifications
   const openNotificationSuccess = (name) => {
     notification.open({
-      message: "Registration Successful!",
-      description: `Welcome to Buffle ${name}!`,
+      message: "Login Successful!",
+      description: `Welcome back to Buffle ${name}!`,
       style: {
         borderRadius: "8px",
         boxShadow: "5px 5px 22px rgba(0, 0, 0, 0.05)",
@@ -60,7 +59,7 @@ function RegistrationForm() {
 
   const openNotificationFailure = () => {
     notification.open({
-      message: "Registration Failure",
+      message: "Login Failure",
       description: `Sorry, there's been an error`,
       style: {
         borderRadius: "8px",
@@ -69,30 +68,44 @@ function RegistrationForm() {
     });
   };
 
-  // API calls
-  async function registerUser() {
-    dispatch({type: "REGISTRATION_START"});
-    try {
-      const res = await API.post("/register", {
-        email: email,
-        password: password,
-        username: username,
-        lastName: lastName,
+  const openNotificationNoTeam = (name) => {
+    notification.open({
+        message: "Login Successful!",
+        description: `Looks like you still don't have a team ${name}. Lets fix that real quick!`,
+        style: {
+          borderRadius: "8px",
+          boxShadow: "5px 5px 22px rgba(0, 0, 0, 0.05)",
+        },
       });
-      openNotificationSuccess(res.data.username);
-      dispatch({ type: "REGISTRATION_FAILURE", payload: res.data.email });
-      navigate('/join-team');
+  };
+
+  // API calls
+  async function loginUser() {
+    dispatch({ type: "LOGIN_START" })
+    try {
+        const res = await API.post('/login', {
+            email: email,
+            password: password,
+        });
+        dispatch({type: "LOGIN_SUCCESS", payload: res.data.email});
+        if(res.data.teams.length > 0) {
+            openNotificationSuccess(res.data.username);
+            navigate('/');
+        } else {
+            openNotificationNoTeam(res.data.username);
+            navigate('/join-team');
+        };
     } catch (error) {
-      dispatch({ type: "REGISTRATION_FAILURE" });
+      dispatch({ type: "LOGIN_FAILURE" });
       openNotificationFailure();
       console.log(error);
     }
   };
 
   // handlers
-  const handleRegister = () => {
-    console.log("Starting the Register process");
-    registerUser();
+  const handleLogin = () => {
+    console.log('Starting Login')
+    loginUser();
   };
 
   return (
@@ -101,7 +114,7 @@ function RegistrationForm() {
         <Form
           layout="vertical"
           style={styles.form}
-          onFinish={handleRegister}
+          onFinish={handleLogin}
           onFinishFailed={openNotificationFailure}
         >
           {/* Title section */}
@@ -118,9 +131,9 @@ function RegistrationForm() {
           {/* Email and Password */}
           <Form.Item style={styles.formItem}>
             <div style={styles.emailSection}>
-              <span>
-                Give us an Email and a Password (better be strong one)
-              </span>
+              <Typography style={styles.formHeaderText}>
+                What was your Email and password again?
+              </Typography>
               <Input
                 style={styles.input}
                 placeholder="Email"
@@ -137,39 +150,16 @@ function RegistrationForm() {
             </div>
           </Form.Item>
 
-          {/* username and lastName */}
-          <Form.Item style={styles.formItem}>
-            <div style={styles.nameSection}>
-              <span>How should we call you?</span>
-              <Space direction="horizontal">
-                <Input
-                  style={styles.input}
-                  placeholder="Username"
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <Input
-                  style={styles.input}
-                  placeholder="Your other name"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </Space>
-            </div>
-          </Form.Item>
-
           {/* Next button */}
           <Form.Item style={styles.formItem}>
             <div style={styles.formButtonStartWrapper}>
               <Button
-                  style={styles.formButtonStart}
-                  size="large"
-                  htmlType="submit"
-                  disabled={isFetching}
+                style={styles.formButtonStart}
+                size="large"
+                htmlType="submit"
+                disabled={isFetching}
               >
-                {isFetching? (
-                  <Spin indicator={loadingIcon} />
-                ) : (
-                  'Next'
-                )}
+                {isFetching ? <Spin indicator={loadingIcon} /> : "Enter"}
               </Button>
             </div>
           </Form.Item>
@@ -177,11 +167,11 @@ function RegistrationForm() {
           {/* Login Link */}
           <Form.Item style={styles.formItem}>
             <Typography style={styles.loginText}>
-              Already have an account?
+              Don't have an account?
             </Typography>
-            <Link to={`/login`}>
+            <Link to={`/register`}>
               <Typography style={styles.loginText}>
-                Click here to Log in
+                Click here to make one!
               </Typography>
             </Link>
           </Form.Item>
@@ -193,4 +183,4 @@ function RegistrationForm() {
   );
 }
 
-export default RegistrationForm;
+export default LoginForm;

@@ -27,3 +27,12 @@ export const RegisterSuccess = (user) => ({
     type: "REGISTRATION_SUCCESS",
     payload: user,
 });
+
+export const FetchingStart = () => ({
+  type: "fetching_start"
+});
+
+export const FetchingEnd = () => ({
+  type: "fetching_end"
+});
+

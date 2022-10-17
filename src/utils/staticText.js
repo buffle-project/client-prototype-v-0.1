@@ -6,7 +6,7 @@ export const AccountCreationText = {
 };
 
 export const LoginText = {
-    title: `You waited for this`,
+    title: `Welcome to Buffle You!`,
     paragraph: `Get everything you need 
     to get the best out of you. Run your force in one 
     command center and be ready to get things done. 

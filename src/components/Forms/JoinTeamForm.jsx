@@ -1,11 +1,11 @@
 // React core imports
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 
 // antd imports
 import { Form, Image, Typography, Button, Input, notification } from "antd";
 
-// redux imports
-import { useSelector, useDispatch } from 'react-redux';
+// context imports
+import {Context} from '../../context/Context';
 
 // utils imports
 import styles from "./styles";
@@ -19,9 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function JoinTeamForm() {
   const [invitationCode, setInvitationCode] = useState('');
-  const user = useSelector((state) => state.userSlice.user);
-  
-
+  const { user, isFetching, dispatch } = useContext(Context);
 	// Notifications
 	const openNotificationSuccess = (teamName) => {
 		notification.open({
@@ -47,14 +45,19 @@ function JoinTeamForm() {
 
 	// API calls
 	async function joinTeam() {
-		await API.post('/account/join-team', {
-			// email: email
-		})
+		try {
+      await API.post("/join-team", {
+
+      })
+    } catch (error) {
+
+    };
 	};
 
   // handlers
   const handleJoinTeam = () => {
-    console.log(user.email);
+    console.log(invitationCode);
+    console.log(user);
   };
 
   return (
@@ -86,6 +89,7 @@ function JoinTeamForm() {
               <Input
                 style={styles.teamCodeInput}
                 placeholder="6 character code"
+                onChange={(e) => setInvitationCode(e.target.value)}
               />
               <Button 
                 style={styles.teamCodeButton}
