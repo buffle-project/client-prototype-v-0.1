@@ -14,10 +14,12 @@ import JoinTeam from './pages/JoinTeam/JoinTeam';
 // utils
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
+// Context imports
+import { useContext } from "react";
+import { Context } from "./context/Context";
 
 function App() {
-    const user = useSelector((state) => state.userSlice.user)
-    const dispatch = useDispatch()
+    const { user } = useContext(Context);
 
     return (
         <>

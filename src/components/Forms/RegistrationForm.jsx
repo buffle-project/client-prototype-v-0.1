@@ -1,5 +1,5 @@
 // React core imports
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 // Antd imports
 import {
@@ -13,13 +13,6 @@ import {
   Spin,
 } from "antd";
 
-// redux imports
-import { useSelector, useDispatch } from "react-redux";
-import {
-  setUser,
-  deleteUser,
-} from "../../context/slices/userSlice";
-
 // utils imports
 import styles from "./styles";
 import { legalText } from "../../utils/staticText";
@@ -31,6 +24,9 @@ import {
 } from "@ant-design/icons";
 import API from "../../utils/api";
 import { useNavigate, Link } from "react-router-dom";
+
+// Context imports
+import { Context } from "../../context/Context";
 
 const loadingIcon = (
   <LoadingOutlined
@@ -47,16 +43,13 @@ function RegistrationForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [lastName, setLastName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
+  const { dispatch, isFetching } = useContext(Context);
   const navigate = useNavigate();
-  const user = useSelector((state) => state.userSlice.user);
-
 
   // Notifications
   const openNotificationSuccess = (name) => {
     notification.open({
-      message: "Authentication Successful!",
+      message: "Registration Successful!",
       description: `Welcome to Buffle ${name}!`,
       style: {
         borderRadius: "8px",
@@ -67,7 +60,7 @@ function RegistrationForm() {
 
   const openNotificationFailure = () => {
     notification.open({
-      message: "Authentication Failure",
+      message: "Registration Failure",
       description: `Sorry, there's been an error`,
       style: {
         borderRadius: "8px",
@@ -78,31 +71,22 @@ function RegistrationForm() {
 
   // API calls
   async function registerUser() {
-    setIsLoading(true);
-    await API.post("/register", {
-      email: email,
-      password: password,
-      username: username,
-      lastName: lastName,
-    })
-      .then((res) => {
-        setIsLoading(false);
-        console.log(res.data.username, res.data.email)
-        let payload = {
-          username: res.data.username,
-          email: res.data.email
-        }
-        dispatch(setUser());
-        openNotificationSuccess(res.data.username);
-        console.log(user);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.log("There's been an error:");
-        console.log(error);
-        openNotificationFailure();
+    dispatch({type: "REGISTRATION_START"});
+    try {
+      const response = await API.post("/register", {
+        email: email,
+        password: password,
+        username: username,
+        lastName: lastName,
       });
-  }
+      openNotificationSuccess(response.data.username);
+      dispatch({ type: "REGISTRATION_FAILURE", payload: response.data });
+    } catch (error) {
+      dispatch({ type: "REGISTRATION_FAILURE" });
+      openNotificationFailure();
+      console.log(error);
+    }
+  };
 
   // handlers
   const handleRegister = () => {
@@ -174,7 +158,7 @@ function RegistrationForm() {
           {/* Next button */}
           <Form.Item style={styles.formItem}>
             <div style={styles.formButtonStartWrapper}>
-              {isLoading ? (
+              {isFetching ? (
                 <Spin indicator={loadingIcon} />
               ) : (
                 <Button
@@ -194,7 +178,9 @@ function RegistrationForm() {
               Already have an account?
             </Typography>
             <Link to={`/login`}>
-              <Typography style={styles.loginText}>Click here to Log in</Typography>
+              <Typography style={styles.loginText}>
+                Click here to Log in
+              </Typography>
             </Link>
           </Form.Item>
         </Form>

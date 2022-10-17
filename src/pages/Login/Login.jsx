@@ -6,7 +6,7 @@ import { Form, Button, Input, Image, Space, notification, Typography } from 'ant
 
 // Redux imports
 import { useSelector, useDispatch } from 'react-redux';
-import { setUser, deleteUser, setUserBetter } from '../../context/slices/userSlice';
+import { setUser, deleteUser, setUserBetter } from '../../reduxContext/slices/userSlice';
 
 // utils imports
 import { textHeadline, textParagraph, textLegal } from './staticText';

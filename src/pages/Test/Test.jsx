@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'antd';
-import { deleteUser } from '../../context/slices/userSlice';
+import { deleteUser } from '../../reduxContext/slices/userSlice';
 import { Link, useNavigate } from "react-router-dom";
 
 
