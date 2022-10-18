@@ -8,7 +8,6 @@ import {
   Image,
   Button,
   Input,
-  Space,
   notification,
   Spin,
 } from "antd";

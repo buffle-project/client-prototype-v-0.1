@@ -29,10 +29,10 @@ export const RegisterSuccess = (user) => ({
 });
 
 export const FetchingStart = () => ({
-  type: "fetching_start"
+  type: "FETCHING_START"
 });
 
 export const FetchingEnd = () => ({
-  type: "fetching_end"
+  type: "FETCHING_END"
 });
 

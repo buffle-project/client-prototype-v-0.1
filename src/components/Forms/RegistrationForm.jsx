@@ -80,7 +80,7 @@ function RegistrationForm() {
         lastName: lastName,
       });
       openNotificationSuccess(res.data.username);
-      dispatch({ type: "REGISTRATION_FAILURE", payload: res.data.email });
+      dispatch({ type: "REGISTRATION_SUCCESS", payload: res.data.email });
       navigate('/join-team');
     } catch (error) {
       dispatch({ type: "REGISTRATION_FAILURE" });

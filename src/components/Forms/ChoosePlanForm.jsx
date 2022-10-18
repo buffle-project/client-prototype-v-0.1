@@ -79,7 +79,7 @@ function ChoosePlanForm() {
                 <div style={styles.planBulletPoints}>
                   <Typography
                     style={styles.planDescriptionText}
-                  >{`Up to 4 People`}</Typography>
+                  >{`Up to 5 People`}</Typography>
                   <Typography
                     style={styles.planDescriptionText}
                   >{`Access to all apps`}</Typography>

@@ -186,7 +186,25 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
+    },
+
+    // Create team section
+    listContainer: {
+        height: '150',
+        overflow: 'auto',
+    },
+    list: {
+        height: '150',
+        overflow: 'auto',
+    },
+    teamNameInput: {
+        borderRadius: '8px',
+        boxShadow: '5px 5px 22px rgba(0, 0, 0, 0.15)',
+        border: 'none',
+        marginTop: 15,
+        width: '250px'
     }
+
 };
 
 export default styles;
