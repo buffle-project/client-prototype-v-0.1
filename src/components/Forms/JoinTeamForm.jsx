@@ -1,5 +1,5 @@
 // React core imports
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 // antd imports
 import { Form, Image, Typography, Button, Input, notification, Spin } from "antd";
@@ -13,7 +13,7 @@ import LogoPurple from "../../img/png/logoPurple.png";
 import { legalText } from "../../utils/staticText";
 import { LoadingOutlined } from "@ant-design/icons";
 import API from "../../utils/api";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const loadingIcon = (
   <LoadingOutlined
@@ -55,17 +55,17 @@ function JoinTeamForm() {
 
   // API calls
   async function joinTeam() {
-    dispatch({type: "FETCH_START"});
+    dispatch({ type: "FETCH_START" });
     try {
       await API.post("/account/join-team", {
         email: user,
         inviteCode: invitationCode
       });
-      dispatch({type: "FETCH_END"});
+      dispatch({ type: "FETCH_END" });
       openNotificationSuccess();
       navigate('/');
     } catch (error) {
-      dispatch({type: "FETCH_END"});
+      dispatch({ type: "FETCH_END" });
       openNotificationFailure();
       console.log(error);
     }
@@ -75,6 +75,10 @@ function JoinTeamForm() {
   const handleJoinTeam = () => {
     console.log('Joining the team');
     joinTeam();
+  };
+
+  window.onbeforeunload = function () {
+    localStorage.clear();
   };
 
   return (
@@ -109,7 +113,7 @@ function JoinTeamForm() {
                 onChange={(e) => setInvitationCode(e.target.value)}
               />
               <Button
-                style={styles.teamCodeButton} 
+                style={styles.teamCodeButton}
                 onClick={handleJoinTeam}
                 disabled={isFetching}
               >
