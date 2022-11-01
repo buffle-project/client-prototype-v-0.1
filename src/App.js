@@ -4,7 +4,6 @@ import 'antd/dist/antd.min.css';
 
 // pages imports
 import Login from './pages/Login/Login';
-import Test from './pages/Test/Test';
 import AccountCreation from './pages/AccountCreation/AccountCreation';
 import JoinTeam from './pages/JoinTeam/JoinTeam';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -12,7 +11,7 @@ import ChoosePlan from './pages/ChoosePlan/ChoosePlan';
 import CreateTeam from './pages/CreateTeam/CreateTeam';
 
 // utils
-import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Context imports
 import { useContext } from "react";
