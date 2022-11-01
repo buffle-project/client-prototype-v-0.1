@@ -77,8 +77,9 @@ function CreateTeamForm() {
             email: user,
             teamName: teamName,
             pendingInvites: inviteList
-        });
-        openNotificationSuccess(res.savedTeam.teamName);
+        }); 
+        // openNotificationSuccess(res.savedTeam.teamName);
+        openNotificationSuccess(teamName);
         dispatch({type: "FETCH_END"});
         navigate('/');
     } catch(error) {
