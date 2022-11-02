@@ -1,17 +1,11 @@
-import React, { useContext } from "react";
+// react core imports
+import React from "react";
 
-import { Context } from "../../context/Context";
-
-import { Button } from 'antd';
-
+// components imports
 import Sidebar from '../../components/Sidebar/Sidebar';
 
-function Dashboard() {
-  const { dispatch } = useContext(Context);
 
-  const handleLogout = () => {
-    dispatch({ type: "LOGOUT" })
-  }
+function Dashboard() {
 
   return (
     <>
@@ -21,11 +15,7 @@ function Dashboard() {
       }}>
         <Sidebar />
         <div>Dashboard says hi!</div>
-        <Button
-          onClick={handleLogout}
-        >
-          Logout
-        </Button>
+        
       </div>
     </>
   );

@@ -15,7 +15,7 @@ import check from './img/check.png';
 import drop from './img/drop.png';
 import moneybag from './img/moneybag.png';
 import party from './img/party.png';
-import portugal from './img/portugal.png';
+// import portugal from './img/portugal.png';
 import notepad from './img/notepad.png';
 import target from './img/target.png';
 
