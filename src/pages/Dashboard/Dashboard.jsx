@@ -18,7 +18,7 @@ function Dashboard() {
           style={{
             width: '100%',
             height: '100vh',
-            backgroundColor: 'red'
+            backgroundColor: '#EFF3FA'
           }}
         >Dashboard says hi!</div>
         
