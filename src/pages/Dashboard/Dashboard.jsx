@@ -14,7 +14,13 @@ function Dashboard() {
         flexDirection: 'row'
       }}>
         <Sidebar />
-        <div>Dashboard says hi!</div>
+        <div
+          style={{
+            width: '100%',
+            height: '100vh',
+            backgroundColor: 'red'
+          }}
+        >Dashboard says hi!</div>
         
       </div>
     </>
