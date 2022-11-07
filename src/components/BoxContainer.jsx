@@ -42,6 +42,8 @@ function BoxContainer(props) {
                 borderRadius: '17px',
                 marginTop: props.marginTop? props.marginTop : 15,
                 marginBottom: props.marginBottom? props.marginBottom : 15,
+                marginLeft: props.marginLeft? props.marginLeft : 15,
+                marginRight: props.marginRight? props.marginRight : 15,
                 cursor: isHovering? 'pointer' : '',
             }}
                 onMouseEnter={handleMouseEnter}

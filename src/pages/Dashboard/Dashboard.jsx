@@ -3,7 +3,7 @@ import React from "react";
 
 // components imports
 import Sidebar from '../../components/Sidebar/Sidebar';
-
+import Topbar from "../../components/Topbar/Topbar";
 
 function Dashboard() {
 
@@ -20,7 +20,10 @@ function Dashboard() {
             height: '100vh',
             backgroundColor: '#EFF3FA'
           }}
-        >Dashboard says hi!</div>
+        >
+          <Topbar></Topbar>
+
+        </div>
         
       </div>
     </>
