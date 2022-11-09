@@ -166,12 +166,17 @@ function CreateTeamForm() {
                 size="small"
                 dataSource={inviteList}
                 style={styles.list}
+                // renderItem={(item) => (
+                //     <List.Item
+                //         actions={[<CloseOutlined 
+                //             onClick={handleRemoveClick()}
+                //         />]}
+                //     >{item}</List.Item>
+                // )}
                 renderItem={(item) => (
-                    <List.Item
-                        actions={[<CloseOutlined 
-                            onClick={handleRemoveClick()}
-                        />]}
-                    >{item}</List.Item>
+                  <List.Item>
+                    {item}
+                  </List.Item>
                 )}
                 />
             </div>

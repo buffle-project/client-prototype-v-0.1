@@ -42,15 +42,15 @@ function Title() {
             fontSize: "20px",
             fontWeight: "bold",
             color: "#7E94B7",
-            padding: 10,
+            padding: 20,
           }}
         >
           {`Hi Luka`}
         </Typography>
         <Typography
           style={{
-            marginTop: -20,
-            padding: 10,
+            marginTop: -40,
+            padding: 20,
             fontSize: "26px",
             fontWeight: "bold",
             color: "#1B2559",

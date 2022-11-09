@@ -5,6 +5,9 @@ import React from "react";
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Topbar from "../../components/Topbar/Topbar";
 
+// widgets imports for testing
+import { WorkmoodApp, WorkmoodWidget } from "../../apps/workmood";
+
 function Dashboard() {
 
   return (
@@ -18,11 +21,13 @@ function Dashboard() {
           style={{
             width: '100%',
             height: '100vh',
-            backgroundColor: '#EFF3FA'
+            backgroundColor: '#EFF3FA',
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
-          <Topbar></Topbar>
-
+          <Topbar />
+          <WorkmoodWidget />
         </div>
         
       </div>
