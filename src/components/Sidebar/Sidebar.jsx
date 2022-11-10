@@ -9,8 +9,8 @@ import BoxContainer from '../BoxContainer';
 import { Image, Button } from 'antd';
 
 // img imports
-import homeImg from './img/home.png';
-import dashImg from './img/dash.png';
+import homeImg from '../../img/png/home.png';
+import dashImg from '../../img/png/dash.png';
 
 // context
 import { Context } from '../../context/Context';
