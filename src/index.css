@@ -8,7 +8,7 @@ body {
   font-family: "Proxima Soft" !important;
   width: 100%;
   height: 100vh;
-  /* background: #EFF3FA; */
+  background: #EFF3FA !important;
 }
 
 code {

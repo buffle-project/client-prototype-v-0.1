@@ -9,6 +9,7 @@ import { titleText } from "../../utils/titleText";
 import API from "../../utils/api";
 import { useState } from "react";
 import { useEffect } from "react";
+import { colors } from "../../utils/colors";
 
 // components
 import BoxContainer from "../BoxContainer";
@@ -41,7 +42,7 @@ function Title() {
           style={{
             fontSize: "20px",
             fontWeight: "bold",
-            color: "#7E94B7",
+            color: colors.lightGrey,
             padding: 20,
           }}
         >
@@ -51,9 +52,10 @@ function Title() {
           style={{
             marginTop: -40,
             padding: 20,
-            fontSize: "26px",
-            fontWeight: "bold",
-            color: "#1B2559",
+            color: colors.purple,
+            fontSize: "30px",
+            fontWeight: "700",
+            // lineHeight: "60px"
           }}
         >
           {titleText[day]}
@@ -73,7 +75,7 @@ function Menu() {
         style={{
           display: "flex",
           flexDirection: "row",
-          padding: 10
+          padding: 10,
         }}
       >
         <BoxContainer>Team</BoxContainer>

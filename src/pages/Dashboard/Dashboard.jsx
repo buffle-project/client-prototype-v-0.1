@@ -28,7 +28,7 @@ function Dashboard() {
           style={{
             width: "100%",
             height: "100vh",
-            backgroundColor: "#EFF3FA",
+            // backgroundColor: "#EFF3FA",
             display: "flex",
             flexDirection: "column",
           }}
