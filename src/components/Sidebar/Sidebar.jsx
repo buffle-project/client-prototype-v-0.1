@@ -15,6 +15,8 @@ import dashImg from '../../img/png/dash.png';
 // context
 import { Context } from '../../context/Context';
 
+import { Link } from 'react-router-dom';
+
 // styling object
 const styles = {
   container: {
@@ -47,6 +49,7 @@ function Sidebar() {
   return (
     <>
       <div style={styles.container} >
+        <Link to='/dashboard'>
         <BoxContainer width={55} height={55} marginTop={20} marginBottom={50}>
           <Image
             src={homeImg}
@@ -54,8 +57,9 @@ function Sidebar() {
             width={55}
             height={55}
             style={{ marginTop: 3 }}
-          />
+            />
         </BoxContainer>
+        </Link>
         <SidebarScroll apps={apps} />
         <BoxContainer width={55} height={55} marginTop={50} marginBottom={50}>
           <Image

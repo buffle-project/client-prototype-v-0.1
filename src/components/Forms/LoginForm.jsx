@@ -89,7 +89,7 @@ function LoginForm() {
         dispatch({type: "LOGIN_SUCCESS", payload: res.data.email});
         if(res.data.teams.length > 0) {
             openNotificationSuccess(res.data.username);
-            navigate('/');
+            navigate('/dashboard');
         } else {
             openNotificationNoTeam(res.data.username);
             navigate('/join-team');

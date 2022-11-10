@@ -10,12 +10,24 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import ChoosePlan from './pages/ChoosePlan/ChoosePlan';
 import CreateTeam from './pages/CreateTeam/CreateTeam';
 
+// apps imports
+import { WorkmoodApp } from './apps/workmood';
+import WidgetLayout from './components/WidgetLayout';
+
 // utils
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Context imports
 import { useContext } from "react";
 import { Context } from "./context/Context";
+
+function TestElement () {
+    return (
+        <>
+            <div>test element</div>         
+        </>
+    )
+}
 
 function App() {
     const { user } = useContext(Context);
@@ -24,12 +36,19 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route exact path={`/`} element={user? <Dashboard /> : (<Login />)} />
+                    <Route exact path={`/`} element={user? <Dashboard /> : (<Login />)} >
+                        <Route path='/dashboard' element={<WidgetLayout />} />
+                        <Route path='/apps' >
+                            <Route path='workmood' element={<WorkmoodApp />} />
+                        </Route>
+                    </Route>
                     <Route exact path={`/login`} element={user? <Dashboard /> : <Login />} />
                     <Route index path={`/register`} element={<AccountCreation/>} />
                     <Route path={`/join-team`} element={<JoinTeam/>} />
                     <Route path={'/choose-plan'} element={<ChoosePlan />} />
                     <Route path={'/create-team'} element={<CreateTeam />} />
+
+                    
                     
                     {/* Login */}
                     {/* Join team */}
