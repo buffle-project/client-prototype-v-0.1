@@ -31,6 +31,7 @@ function Dashboard() {
             // backgroundColor: "#EFF3FA",
             display: "flex",
             flexDirection: "column",
+            alignItems: 'center',
           }}
         >
           <Topbar />

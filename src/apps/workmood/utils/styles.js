@@ -1,3 +1,5 @@
+import { colors } from '../../../utils/colors';
+
 export const styles = {
     widgetContainer: {
         width: 450,
@@ -37,5 +39,14 @@ export const styles = {
     },
     widgetImage: {
         cursor: 'pointer'
+    },
+
+    // APP
+    appContainer: {
+        backgroundColor: colors.white,
+        boxShadow: '5px 5px 22px rgba(0, 0, 0, 0.25)',
+        width: '95%',
+        height: '80%',
+        borderRadius: 25 
     }
 };
